@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 
-const locationSchema = new mongoose.Schema({
-    name:{
+const locationSchema = new mongoose.Schema(
+    {
+    city:{
         type:String,
-        required: true
+        required: true,
     },
     country:{
         type:String,

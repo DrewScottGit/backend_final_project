@@ -18,7 +18,7 @@ const addLocations = async (req, res) => {
     const { name, country, description, image} = req.body;
     try {
         locations = new Location({
-            name,
+            city,
             country,
             description,
             image
