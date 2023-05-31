@@ -1,4 +1,6 @@
 const Location = require('../models/locationList');
+const express = require('express');
+
 
 const getAllLocations = async (req, res) => {
     let locations;

@@ -5,7 +5,7 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
-const router = require('./routes/api/routesAPI')
+
 
 // Create our express app
 
@@ -28,7 +28,9 @@ db.on('disconnected', ()=> console.log('MongoDB disconnected'));
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors({ origin: '*'}));
+app.use(cors());
+
+app.use('/users', userRoute);
 
 
 const PORT = process.env.PORT || 3001;
