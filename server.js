@@ -33,9 +33,9 @@ mongoose.connection.on('error', (error) => {
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
+app.use(cors({ origin: '*' }));
 
-app.use('/locationList', travelLocation);
+app.use('/travelLocation', travelLocation);
 
 
 const PORT = process.env.PORT || 3001;
