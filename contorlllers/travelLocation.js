@@ -12,7 +12,8 @@ router.get('/', (req, res)=> {
 
 router.get('/seed', async (req, res)=>{
     await Locations.deleteMany({});
-    await Locations.insertMany({travelData});
+    await Locations.insertMany(travelData);
+    res.send('route seeded');
 });
 
 router.delete('/:id', (req, res)=>{
