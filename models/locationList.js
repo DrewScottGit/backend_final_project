@@ -23,6 +23,6 @@ const locationSchema = new mongoose.Schema(
     versionKey: false,
 });
 
-const LocationSchema = mongoose.model('LocationList', locationSchema);
+const Locations = mongoose.model('LocationList', locationSchema);
 
-module.exports = LocationSchema
+module.exports = Locations

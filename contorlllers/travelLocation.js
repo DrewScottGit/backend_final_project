@@ -1,89 +1,41 @@
-const Location = require('../models/locationList');
+const Locations = require('../models/locationList');
+const router = express.Router();
 const express = require('express');
+const travelData = require('../utilites/data')
 
+router.get('/', (req, res)=> {
+    Locations.find({}, (err, foundLocation)=>{
+        res.json(foundLocation)
+    })
+});
 
-const getAllLocations = async (req, res) => {
-    let locations;
-    try {
-        locations = await Location.find();
-    } catch (err) {
-        console.log(err);
-    } if(!locations) {
-        return res.status(404).json({message: "No location found"});
-    }
+router.get('/seed', async (req, res)=>{
+    await Locations.deleteMany({});
+    await Locations.insertMany({travelData});
+});
 
-    return res.status(200).json({ locations });
-}
+router.delete('/:id', (req, res)=>{
+    Locations.findByIdAndRemove(req.params.id, (err, deletedLocation)=>{
+        res.json(deletedLocation)
+    })
+});
 
-const addLocations = async (req, res) => {
-    let locations;
-    const { name, country, description, image} = req.body;
-    try {
-        locations = new Location({
-            city,
-            country,
-            description,
-            image
-        });
-        await location.save();
-    } catch (err) {
-        console.log(err);
-    } if (!Location) {
-        // code 500 means something went wrong on our server
-        return res.status(500).json({ message: "Not able to add"});
-    }
-    // code 201 means successful creation of resource
-    return res.status(201).json({ locations })
-}
+router.put('/:id', (req, res)=>{
+    Locations.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedLocation)=>{
+        res.json(updatedLocation)
+    })
+});
 
-const getById = async (req, res) => {
-    let locations;
-    const id = req.params.id;
-    try {
-        locations = await Location.findById(id);
-    } catch (err) {
-        console.log(err);
-    } if (!Location) {
-        return res.status(404).json({ message: "No location found"});
-    }
-    return res.status(200).json({ locations })
-}
+router.post('/', (req, res)=>{
+    Locations.create(req.body, (err, createdLocation)=>{
+        res.json(createdLocation)
+    })
+});
 
-const updateLocations = async (req, res) => {
-    let locations;
-    const { name, country, description, image } = req.body;
-    const id = req.params.id;
-    try {
-        locations = new Location({
-            name,
-            country,
-            description,
-            image
-        });
-        await locations.save()
-    } catch (err) {
-        console.log(err)
-    } if (!locations){
-        return res.status(404).json({ message: "Unable to Update by ID"});
-    }
-    return res.status(200).json({ locations });
-}
+router.get('/:id', (req, res)=>{
+    Locations.findById(req.params.id, (err, foundLocation)=>{
+        res.json(createdLocation)
+    })
+});
 
-const deleteLocation = async (req, res) => {
-    let locations;
-    const id = rew.params.id;
-    try {
-        locations = await Location.findByIdAndRemove(id);
-    } catch(err) {
-        console.log(err)
-    } if(!locations) {
-        return res.status(404).json({message: "Unable to delete by ID"});
-    }
-    return res.status(200).json({ message: 'Location successfully deleted'});
-}
-
-exports.getAllLocations = getAllLocations;
-exports.addLocations = addLocations;
-exports.getById = getById;
-exports.updateLocations = updateLocations;
-exports.deleteLocation = deleteLocation;
+module.exports = router

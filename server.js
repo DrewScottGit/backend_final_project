@@ -4,6 +4,8 @@ const express = require('express');
 const travelLocation =require('./contorlllers/travelLocation');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const Locations = require('./models/locationList');
+const travelData = require('./utilites/data');
 require('dotenv').config();
 
 
@@ -35,7 +37,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({ origin: '*' }));
 
-app.use('/travelLocation', travelLocation);
+app.use('/travelLoc', travelLocation);
 
 
 const PORT = process.env.PORT || 3001;
