@@ -15,7 +15,7 @@ const travelData = [
         city: "Las Vegas, Nevada",
         country: "USA",
         description: "Viva Las Vegas",
-        image: "images/LVNV.jpg"
+        image: images/LVNV.jpg
     },
     {
         city: "New Delhi, India",
