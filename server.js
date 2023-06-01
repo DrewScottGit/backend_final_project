@@ -37,7 +37,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({ origin: '*' }));
 
-app.use('/travelLoc', travelLocation);
+app.use('/locations', travelLocation);
 
 
 const PORT = process.env.PORT || 3001;
