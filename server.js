@@ -35,7 +35,7 @@ mongoose.connection.on('error', (error) => {
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors({ origin: '*' }));
+app.use(cors());
 
 app.use('/locations', travelLocation);
 
