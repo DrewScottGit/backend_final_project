@@ -37,4 +37,4 @@ const travelData = [
     }
 ]
 
-modules.export = travelData 
+module.exports = travelData 

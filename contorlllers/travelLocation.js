@@ -1,6 +1,7 @@
 const Locations = require('../models/locationList');
-const router = express.Router();
 const express = require('express');
+const router = express.Router();
+
 const travelData = require('../utilites/data')
 
 router.get('/', (req, res)=> {
